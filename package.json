@@ -1,19 +1,13 @@
 {
   "name": "quickcommerce",
   "type": "module",
-  "author": {
-    "name": "Bikramjeet Sarmah",
-    "url": "https://github.com/BikramjeetSarmah03/",
-    "email": "dev.bikramjeet@gmail.com"
-  },
-  "workspaces": [
-    "apps/*",
-    "shared/*"
-  ],
   "devDependencies": {
     "@types/bun": "latest"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
-  }
+  },
+  "workspaces": [
+    "apps/*"
+  ]
 }
