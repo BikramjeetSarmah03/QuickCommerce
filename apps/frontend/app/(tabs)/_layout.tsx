@@ -1,13 +1,13 @@
 import { Tabs, useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { FontAwesome } from "@expo/vector-icons";
+import useAuthStore from "@/hooks/useUser";
 
 export default function TabLayout() {
   const [isMounted, setIsMounted] = useState(false);
   const router = useRouter();
 
-  // Simulate authentication status
-  const isLoggedIn = false; // Replace with actual auth logic
+  const isAuth = useAuthStore((state) => state.isAuth);
 
   useEffect(() => {
     setIsMounted(true); // Mark the layout as mounted
@@ -15,11 +15,11 @@ export default function TabLayout() {
 
   useEffect(() => {
     if (isMounted) {
-      if (!isLoggedIn) {
+      if (!isAuth) {
         router.replace("/(auth)/login"); // Redirect only after mounting
       }
     }
-  }, [isMounted, isLoggedIn]);
+  }, [isMounted, isAuth]);
 
   return (
     <Tabs>
