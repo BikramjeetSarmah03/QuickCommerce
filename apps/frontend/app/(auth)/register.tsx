@@ -4,78 +4,91 @@ import { Alert, View } from "react-native";
 
 import { Button } from "@/components/ui/button";
 import { Text } from "@/components/ui/text";
+
+import useAuthStore from "@/hooks/useUser";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 
 import { SocialAuth } from "@/components/auth/social-auth";
 
-import useAuthStore from "@/hooks/useUser";
-
-export default function Login() {
+export default function Register() {
   const setAuth = useAuthStore((state) => state.setAuth);
 
   const router = useRouter();
 
-  const [loginData, setLoginData] = useState({
+  const [registerData, setRegisterData] = useState({
     email: "",
     password: "",
+    cfPassword: "",
   });
 
   const handleInputChange = (field: string, value: string) => {
-    setLoginData((prev) => ({
+    setRegisterData((prev) => ({
       ...prev,
       [field]: value,
     }));
   };
 
   const handleLogin = () => {
-    if (!loginData.email || !loginData.password) {
+    if (!registerData.email || !registerData.password) {
       Alert.alert("Error", "Please fill out all fields.");
       return;
+    }
+
+    if (registerData.password !== registerData.cfPassword) {
+      Alert.alert("Error,", "Passwords Don't Match");
     }
 
     setAuth(true);
 
     router.replace("/");
 
-    console.log("Login Data:", loginData);
+    console.log("Register Data:", registerData);
     Alert.alert("Success", "Logged in successfully!");
   };
 
   return (
     <View className="justify-center flex-1 gap-12 p-8 bg-white">
-      <Text className="text-6xl font-bold">Welcome {"\n"}Back!</Text>
+      <Text className="text-6xl font-bold">Create an account</Text>
 
       <View className="gap-8">
         <View>
           <Label>Email</Label>
           <Input
             placeholder="Enter your email"
-            value={loginData.email}
+            value={registerData.email}
             onChangeText={(text) => handleInputChange("email", text)}
             keyboardType="email-address"
             autoCapitalize="none"
           />
         </View>
 
-        <View>
-          <View className="relative w-full">
-            <Label>Password</Label>
-            <Input
-              placeholder="Enter your password"
-              value={loginData.password}
-              onChangeText={(text) => handleInputChange("password", text)}
-              type="password"
-            />
-          </View>
-          <Link href={"/(auth)/password/forgot"}>
-            <Text className="text-right text-primary">Forgot Password ?</Text>
-          </Link>
+        <View className="relative w-full">
+          <Label>Password</Label>
+          <Input
+            placeholder="Enter your password"
+            value={registerData.password}
+            onChangeText={(text) => handleInputChange("password", text)}
+            type="password"
+          />
+        </View>
+
+        <View className="relative w-full">
+          <Label>Confirm Password</Label>
+          <Input
+            placeholder="Confirm Password"
+            value={registerData.cfPassword}
+            onChangeText={(text) => handleInputChange("cfPassword", text)}
+            type="password"
+          />
+          <Text className="mt-4">
+            By clicking the Register button, you agree to the public offer
+          </Text>
         </View>
       </View>
 
       <Button onPress={handleLogin}>
-        <Text>Login</Text>
+        <Text>Register</Text>
       </Button>
 
       <View className="gap-4">
@@ -83,12 +96,12 @@ export default function Login() {
         <SocialAuth />
 
         <Text className="text-center">
-          Create An Account{" "}
+          Already Have An Account ?{" "}
           <Link
-            href={"/(auth)/register"}
+            href={"/(auth)/login"}
             className="text-lg underline text-primary"
           >
-            Sign Up
+            Sign In
           </Link>
         </Text>
       </View>
