@@ -41,7 +41,7 @@ export default function ResetPassword() {
       <Text className="text-6xl font-bold">Reset Password </Text>
 
       <View className="justify-center flex-1 gap-10 -mt-20">
-        <View>
+        <View className="gap-2">
           <Label nativeID="otp">OTP</Label>
           <OtpInput
             numberOfDigits={6}
@@ -52,9 +52,10 @@ export default function ResetPassword() {
 
         {otpVerified && (
           <View className="gap-4">
-            <View className="relative w-full">
-              <Label>Password</Label>
+            <View className="relative w-full gap-2">
+              <Label nativeID="password">Password</Label>
               <Input
+                id="password"
                 placeholder="Enter your new password"
                 value={password.password}
                 onChangeText={(text) => handleInputChange("password", text)}
@@ -62,9 +63,10 @@ export default function ResetPassword() {
               />
             </View>
 
-            <View className="relative w-full">
-              <Label>Confirm Password</Label>
+            <View className="relative w-full gap-2">
+              <Label nativeID="cfPassword">Confirm Password</Label>
               <Input
+                id="cfPassword"
                 placeholder="Confirm Password"
                 value={password.cfPassword}
                 onChangeText={(text) => handleInputChange("cfPassword", text)}

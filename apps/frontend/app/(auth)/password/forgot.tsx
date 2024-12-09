@@ -20,8 +20,9 @@ export default function ForgotPassword() {
 
       <View className="gap-4">
         <View>
-          <Label>Email</Label>
+          <Label nativeID="email">Email</Label>
           <Input
+            id="email"
             placeholder="Enter your email address"
             keyboardType="email-address"
             autoCapitalize="none"
@@ -30,9 +31,7 @@ export default function ForgotPassword() {
           />
         </View>
 
-        <Text>
-          * We will send you a message to set or reset your new password
-        </Text>
+        <Text>* We will send you a 6 digit OTP to your email</Text>
       </View>
 
       <View className="gap-4">

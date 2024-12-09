@@ -43,13 +43,14 @@ export default function Login() {
   };
 
   return (
-    <View className="justify-center flex-1 gap-12 p-8 bg-white">
+    <View className="justify-center flex-1 gap-12 p-8 bg-white ">
       <Text className="text-6xl font-bold">Welcome {"\n"}Back!</Text>
 
       <View className="gap-8">
-        <View>
-          <Label>Email</Label>
+        <View className="gap-2">
+          <Label nativeID="email">Email</Label>
           <Input
+            id="email"
             placeholder="Enter your email"
             value={loginData.email}
             onChangeText={(text) => handleInputChange("email", text)}
@@ -59,17 +60,21 @@ export default function Login() {
         </View>
 
         <View>
-          <View className="relative w-full">
-            <Label>Password</Label>
+          <View className="relative w-full gap-2">
+            <Label nativeID="password">Password</Label>
             <Input
+              id="password"
               placeholder="Enter your password"
               value={loginData.password}
               onChangeText={(text) => handleInputChange("password", text)}
               type="password"
             />
           </View>
-          <Link href={"/(auth)/password/forgot"}>
-            <Text className="text-right text-primary">Forgot Password ?</Text>
+          <Link
+            href={"/(auth)/password/forgot"}
+            className="text-right text-primary"
+          >
+            Forgot Password ?
           </Link>
         </View>
       </View>

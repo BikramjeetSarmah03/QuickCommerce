@@ -52,9 +52,10 @@ export default function Register() {
       <Text className="text-6xl font-bold">Create an account</Text>
 
       <View className="gap-8">
-        <View>
-          <Label>Email</Label>
+        <View className="gap-2">
+          <Label nativeID="email">Email</Label>
           <Input
+            id="email"
             placeholder="Enter your email"
             value={registerData.email}
             onChangeText={(text) => handleInputChange("email", text)}
@@ -63,9 +64,10 @@ export default function Register() {
           />
         </View>
 
-        <View className="relative w-full">
-          <Label>Password</Label>
+        <View className="relative w-full gap-2">
+          <Label nativeID="password">Password</Label>
           <Input
+            id="password"
             placeholder="Enter your password"
             value={registerData.password}
             onChangeText={(text) => handleInputChange("password", text)}
@@ -73,14 +75,16 @@ export default function Register() {
           />
         </View>
 
-        <View className="relative w-full">
-          <Label>Confirm Password</Label>
+        <View className="relative w-full gap-2">
+          <Label nativeID="cfPassword">Confirm Password</Label>
           <Input
+            id="cfPassword"
             placeholder="Confirm Password"
             value={registerData.cfPassword}
             onChangeText={(text) => handleInputChange("cfPassword", text)}
             type="password"
           />
+
           <Text className="mt-4">
             By clicking the Register button, you agree to the public offer
           </Text>
