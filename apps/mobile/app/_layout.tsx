@@ -11,17 +11,17 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 export { ErrorBoundary } from "expo-router";
 
 export default function RootLayout() {
-	return (
-		<SafeAreaProvider>
-			<Stack screenOptions={{ headerShown: false }}>
-				<Stack.Screen name="(auth)" />
+  return (
+    <SafeAreaProvider>
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="(auth)" />
 
-				<Stack.Screen name="(drawer)" />
-				<Stack.Screen name="+not-found" />
-			</Stack>
-			<StatusBar style="auto" hidden />
+        <Stack.Screen name="(drawer)" />
+        <Stack.Screen name="+not-found" />
+      </Stack>
+      <StatusBar style="auto" hidden />
 
-			<PortalHost />
-		</SafeAreaProvider>
-	);
+      <PortalHost />
+    </SafeAreaProvider>
+  );
 }

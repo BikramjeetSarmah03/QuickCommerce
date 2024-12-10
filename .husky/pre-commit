@@ -1,5 +1,5 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
+#!/bin/bash
+
 
 print_color() {
   color="$1"
@@ -7,26 +7,18 @@ print_color() {
   echo -e "\033[${color}m$* \033[0m"
 }
 
-print_color 33 "\nRunning lint..."
-bun run lint
-result=$?
-if [ "$result" -ne 0 ]; then
-  print_color 31 "Lint checks failed!"
+# Lint-Staged (Formatting + Linting)
+print_color 33 "\nRunning lint-staged (formatting + linting)..."
+bun run precommit
+result=$? 
+
+if [ "$result" -eq 0 ]; then
+  print_color 32 "Lint-staged checks passed! ✅"
+else
+  print_color 31 "Lint-staged checks failed! ❌"
   print_color 31 "Please fix the issues before committing."
   exit 1
-else
-  print_color 32 "Lint checks passed! ✅"
 fi
 
-print_color 33 "\nRunning Formating..."
-bun run format:write
-result=$?
-if [ "$result" -ne 0 ]; then
-  print_color 31 "Formating failed!"
-  print_color 31 "Please fix the formating errors before committing."
-  exit 1
-else
-  print_color 32 "Formating checks passed! ✅"
-fi
-
-print_color 32 "\nAll checks passed!"
+print_color 32 "\nAll checks passed! ✅"
+echo "Committing changes...\n"

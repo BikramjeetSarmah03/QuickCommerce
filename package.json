@@ -1,22 +1,25 @@
 {
-	"name": "quickcommerce",
-	"type": "module",
-	"scripts": {
-		"start:mobile": "bun run --filter=@apps/mobile start -c ",
-		"lint": "bunx biome lint .",
-		"format:check": "bunx biome format .",
-		"format:write": "bunx biome format --write .",
-		"prepare": "husky"
-	},
-	"devDependencies": {
-		"@types/bun": "latest"
-	},
-	"peerDependencies": {
-		"typescript": "^5.0.0"
-	},
-	"workspaces": ["apps/*"],
-	"dependencies": {
-		"@biomejs/biome": "^1.9.4",
-		"husky": "^9.1.7"
-	}
+  "name": "quickcommerce",
+  "type": "module",
+  "scripts": {
+    "start:mobile": "bun run --filter=@apps/mobile start -c ",
+    "lint": "bunx biome lint .",
+    "format:check": "bunx biome format .",
+    "format:write": "bunx biome format --write .",
+    "validate": "bun run format:write && bun run lint",
+    "prepare": "husky install",
+    "precommit": "lint-staged"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "workspaces": ["apps/*"],
+  "dependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.11"
+  }
 }
