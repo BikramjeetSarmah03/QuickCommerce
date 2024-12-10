@@ -15,7 +15,7 @@ export function Header() {
 
 	return (
 		<View
-			className="flex-row items-center justify-between w-full p-4 mb-2 bg-white border-b border-gray-100 shadow-[0px_0px_2px] native:pb-4"
+			className="flex-row items-center justify-between w-full p-4 mb-2 native:pb-4"
 			style={[{ paddingTop: safeAreaInset.top + 2 }]}
 		>
 			<TouchableOpacity
