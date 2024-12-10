@@ -1,8 +1,8 @@
 import { Tabs, useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
+
 import useAuthStore from "@/hooks/useUser";
-import { TouchableWithoutFeedback } from "react-native";
 
 export default function TabLayout() {
   const [isMounted, setIsMounted] = useState(false);
