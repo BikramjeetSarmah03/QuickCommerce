@@ -8,6 +8,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 
 import { ProfileDropdown } from "@/components/user/profile-dropdown";
+import { SearchProduct } from "../product/search";
 
 export function Header() {
   const safeAreaInset = useSafeAreaInsets();
@@ -15,26 +16,26 @@ export function Header() {
   const navigation = useNavigation<DrawerNavigationProp<ParamListBase>>();
 
   return (
-    <LinearGradient
-      // Button Linear Gradient
-      colors={["#ef4444", "#f3f4f6"]}
-    >
+    <LinearGradient colors={["#ef4444", "#f3f4f6"]}>
       <View
-        className="flex-row items-center justify-between w-full p-4 mb-2 native:pb-4 "
+        className="p-4 mb-2 native:pb-4"
         style={[{ paddingTop: safeAreaInset.top + 2 }]}
       >
-        <TouchableOpacity
-          onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
-        >
-          <Ionicons name="menu-outline" size={30} />
-        </TouchableOpacity>
+        <View className="flex-row items-center justify-between w-full pb-4">
+          <TouchableOpacity
+            onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
+          >
+            <Ionicons name="menu-outline" size={30} />
+          </TouchableOpacity>
 
-        <View className="flex-row items-center gap-2">
-          <Image source={require("@/assets/images/logo.png")} />
-          <Text className="text-2xl font-semibold">QC</Text>
+          <View className="flex-row items-center gap-2">
+            <Image source={require("@/assets/images/logo.png")} />
+            <Text className="text-2xl font-semibold">QC</Text>
+          </View>
+
+          <ProfileDropdown />
         </View>
-
-        <ProfileDropdown />
+        <SearchProduct />
       </View>
     </LinearGradient>
   );

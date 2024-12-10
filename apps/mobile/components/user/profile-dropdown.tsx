@@ -17,7 +17,8 @@ import { Text } from "@/components/ui/text";
 import LogoutButton from "@/components/auth/logout-button";
 import { Ionicons } from "@expo/vector-icons";
 
-const GITHUB_AVATAR_URI = "https://github.com/mrzachnugent.png";
+const GITHUB_AVATAR_URI =
+  "https://avatars.githubusercontent.com/u/83879699?v=4&size=64";
 
 export const ProfileDropdown = () => {
   return (
