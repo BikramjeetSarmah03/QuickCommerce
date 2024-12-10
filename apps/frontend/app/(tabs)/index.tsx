@@ -1,3 +1,4 @@
+import { Header } from "@/components/common/header";
 import useAuthStore from "@/hooks/useUser";
 import { View, Text, Button } from "react-native";
 
@@ -6,7 +7,7 @@ export default function HomeScreen() {
 
   return (
     <View>
-      <Text>Home Screen</Text>
+      <Header />
 
       <Button title="Logout" onPress={() => setAuth(false)} />
     </View>

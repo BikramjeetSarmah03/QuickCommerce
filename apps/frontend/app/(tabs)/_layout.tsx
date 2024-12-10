@@ -1,7 +1,8 @@
 import { Tabs, useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";
-import { FontAwesome } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import useAuthStore from "@/hooks/useUser";
+import { TouchableWithoutFeedback } from "react-native";
 
 export default function TabLayout() {
   const [isMounted, setIsMounted] = useState(false);
@@ -22,22 +23,100 @@ export default function TabLayout() {
   }, [isMounted, isAuth]);
 
   return (
-    <Tabs>
+    <Tabs
+      screenOptions={{
+        headerShown: false,
+        tabBarActiveTintColor: "red",
+        tabBarInactiveTintColor: "black",
+        tabBarStyle: {
+          backgroundColor: "white",
+          borderTopWidth: 1,
+          borderTopColor: "#ddd",
+          paddingBottom: 10,
+          height: 70,
+        },
+        tabBarLabelStyle: {
+          fontSize: 12,
+        },
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
           title: "Home",
-          tabBarIcon: ({ color }) => (
-            <FontAwesome name="home" size={24} color={color} />
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons
+              name={focused ? "home" : "home-outline"}
+              size={24}
+              color={color}
+            />
           ),
         }}
       />
+
       <Tabs.Screen
-        name="explore"
+        name="wishlist"
         options={{
-          title: "Explore",
-          tabBarIcon: ({ color }) => (
-            <FontAwesome name="paper-plane" size={24} color={color} />
+          title: "Wishlist",
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons
+              name={focused ? "heart" : "heart-outline"}
+              size={24}
+              color={color}
+            />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="cart"
+        options={{
+          title: "",
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons
+              name={"cart-outline"}
+              size={28}
+              color={color}
+              style={{
+                position: "absolute",
+                bottom: 0,
+                backgroundColor: focused ? color : "white",
+                color: focused ? "white" : "black",
+                borderRadius: 50,
+                padding: 16,
+                elevation: 5,
+                width: 60,
+                height: 60,
+              }}
+            />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="search"
+        options={{
+          title: "Search",
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons
+              name={focused ? "search" : "search-outline"}
+              size={24}
+              color={color}
+            />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="settings"
+        options={{
+          title: "Setting",
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons
+              name={focused ? "settings" : "settings-outline"}
+              size={24}
+              color={color}
+            />
           ),
         }}
       />
