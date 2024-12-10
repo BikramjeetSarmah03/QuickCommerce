@@ -1,0 +1,32 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+print_color() {
+  color="$1"
+  shift
+  echo -e "\033[${color}m$* \033[0m"
+}
+
+print_color 33 "\nRunning lint..."
+bun run lint
+result=$?
+if [ "$result" -ne 0 ]; then
+  print_color 31 "Lint checks failed!"
+  print_color 31 "Please fix the issues before committing."
+  exit 1
+else
+  print_color 32 "Lint checks passed! ✅"
+fi
+
+print_color 33 "\nRunning Formating..."
+bun run format:write
+result=$?
+if [ "$result" -ne 0 ]; then
+  print_color 31 "Formating failed!"
+  print_color 31 "Please fix the formating errors before committing."
+  exit 1
+else
+  print_color 32 "Formating checks passed! ✅"
+fi
+
+print_color 32 "\nAll checks passed!"
