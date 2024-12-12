@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Header } from "@/components/common/header";
 
 import { CategoriesList } from "@/components/product/categories-list";
+import { HomeBannerSlider } from "@/components/sliders/home-banner";
 
 export default function HomeScreen() {
   return (
@@ -33,17 +34,7 @@ export default function HomeScreen() {
 
         <CategoriesList />
 
-        <View className="p-4 m-4 bg-pink-500 h-80">
-          <Text className="text-5xl text-white ">50% Off</Text>
-        </View>
-
-        <View className="p-4 m-4 bg-pink-500 h-80">
-          <Text className="text-5xl text-white ">50% Off</Text>
-        </View>
-
-        <View className="p-4 m-4 bg-pink-500 h-80">
-          <Text className="text-5xl text-white ">50% Off</Text>
-        </View>
+        <HomeBannerSlider />
       </ScrollView>
     </>
   );

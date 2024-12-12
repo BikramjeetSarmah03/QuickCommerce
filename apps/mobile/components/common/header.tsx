@@ -1,4 +1,3 @@
-import React from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "expo-router";
 import { View, Text, Image, TouchableOpacity } from "react-native";

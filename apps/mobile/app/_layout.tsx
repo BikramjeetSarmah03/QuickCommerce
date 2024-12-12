@@ -1,7 +1,5 @@
 import "../global.css";
 
-import * as React from "react";
-
 import { StatusBar } from "expo-status-bar";
 import { Stack } from "expo-router";
 

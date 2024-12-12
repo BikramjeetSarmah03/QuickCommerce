@@ -1,10 +1,9 @@
-import { PropsWithChildren } from "react";
-import { TouchableOpacity } from "react-native";
+import { useRouter } from "expo-router";
 
 import useAuthStore from "@/hooks/useUser";
-import { useRouter } from "expo-router";
 import { cn } from "@/lib/utils";
-import { Button, type ButtonProps } from "../ui/button";
+
+import { Button, type ButtonProps } from "@/components/ui/button";
 
 interface LogoutButtonProps extends ButtonProps {}
 

@@ -1,5 +1,5 @@
 import { Tabs, useRouter } from "expo-router";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 
 import useAuthStore from "@/hooks/useUser";
