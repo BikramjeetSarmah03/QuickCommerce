@@ -1,14 +1,12 @@
 import { useLayoutEffect, useState } from "react";
 import { FlatList, View } from "react-native";
 
-import { ProductCard, type Product } from "./product-card";
+import {
+  type ProductResponse,
+  productService,
+} from "@/services/product.service";
 
-interface ProductResponse {
-  limit: number;
-  skip: number;
-  total: number;
-  products: Product[];
-}
+import { ProductCard } from "./product-card";
 
 interface ProductListProps {
   skip?: number;
@@ -22,26 +20,18 @@ export const ProductList = ({ skip, limit }: ProductListProps) => {
   useLayoutEffect(() => {
     (async () => {
       setLoading(true);
-      try {
-        const query = {
-          skip: skip?.toString() || "0",
-          limit: limit?.toString() || "10",
-        };
 
-        const url = new URL("https://dummyjson.com/products");
+      const res = await productService.fetchProducts({
+        skip: skip || 0,
+        limit: limit || 5,
+      });
 
-        url.search = new URLSearchParams(query).toString();
-
-        // Make the fetch request
-        const res = await fetch(url);
-        const data = await res.json();
-
-        setProducts(data);
-      } catch (error) {
+      if (res) {
+        setProducts(res);
+      } else {
         setProducts(null);
-      } finally {
-        setLoading(false);
       }
+      setLoading(false);
     })();
   }, [limit, skip]);
 

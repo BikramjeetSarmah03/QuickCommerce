@@ -1,6 +1,10 @@
-import { View, Text, Dimensions, Image } from "react-native";
+import { View, Text, Dimensions, Image, Pressable } from "react-native";
 import { Rating } from "react-native-ratings";
-import { Button } from "../ui/button";
+import { Link } from "expo-router";
+
+import { buttonVariants } from "@/components/ui/button";
+
+import { cn } from "@/lib/utils";
 
 export type Product = {
   id: number;
@@ -59,13 +63,25 @@ export const ProductCard = ({ product }: ProductCardProps) => {
       style={[{ width: width / 1.5, height: 300 }]}
     >
       <View className="relative">
-        <Image
-          src={product.images[0]}
-          className="h-36"
-          style={{ objectFit: "contain" }}
-        />
+        <Link
+          href={{
+            pathname: "/product/[id]",
+            params: {
+              id: product.id,
+            },
+          }}
+          asChild
+        >
+          <Pressable>
+            <Image
+              src={product.images[0]}
+              className="h-36"
+              style={{ objectFit: "contain" }}
+            />
+          </Pressable>
+        </Link>
 
-        <View className="absolute right-0 flex-row items-center top-5">
+        <View className="absolute right-0 flex-row items-center top-1">
           <Rating
             ratingCount={5}
             startingValue={product.rating}
@@ -81,14 +97,20 @@ export const ProductCard = ({ product }: ProductCardProps) => {
       </View>
 
       <View className="gap-1">
-        <Text className="text-xl font-semibold">{product.title}</Text>
+        <Link
+          href={{
+            pathname: "/product/[id]",
+            params: {
+              id: product.id,
+            },
+          }}
+        >
+          <Text className="text-xl font-semibold">{product.title}</Text>
+        </Link>
         <Text className="text-sm">{product.description.slice(0, 30)}...</Text>
 
         <View className="flex-row items-end gap-2">
-          <Text
-            className="font-semibold text-green-500"
-            style={{ fontSize: 18 }}
-          >
+          <Text className="font-semibold" style={{ fontSize: 18 }}>
             ${discountedPrice.toFixed(2)}
           </Text>
           <Text
@@ -98,16 +120,23 @@ export const ProductCard = ({ product }: ProductCardProps) => {
             ${price.toFixed(2)}
           </Text>
           <Text
-            className=" font-semibold text-red-500 mb-0.5"
+            className=" font-semibold text-green-500 mb-0.5"
             style={{ fontSize: 12 }}
           >
             ({discountPercentage}% off)
           </Text>
         </View>
-
-        <Button className="mt-3">
+        <Link
+          href={{
+            pathname: "/product/[id]",
+            params: {
+              id: product.id,
+            },
+          }}
+          className={cn(buttonVariants(), "text-center mt-2")}
+        >
           <Text className="text-white">Buy Now</Text>
-        </Button>
+        </Link>
       </View>
     </View>
   );
