@@ -6,6 +6,7 @@ import { Header } from "@/components/common/header";
 
 import { CategoriesList } from "@/components/product/categories-list";
 import { HomeBannerSlider } from "@/components/sliders/home-banner";
+import { ProductList } from "@/components/product/product-list";
 
 export default function HomeScreen() {
   return (
@@ -35,6 +36,10 @@ export default function HomeScreen() {
         <CategoriesList />
 
         <HomeBannerSlider />
+
+        <ProductList limit={5} />
+
+        <ProductList skip={25} limit={5} />
       </ScrollView>
     </>
   );

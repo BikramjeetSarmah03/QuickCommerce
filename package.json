@@ -7,7 +7,7 @@
     "format:check": "bunx biome format .",
     "format:write": "bunx biome format --write .",
     "validate": "bun run format:write && bun run lint",
-    "prepare": "husky install",
+    "prepare": "husky init",
     "precommit": "lint-staged"
   },
   "devDependencies": {
