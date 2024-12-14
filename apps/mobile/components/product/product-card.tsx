@@ -1,6 +1,7 @@
 import { View, Text, Dimensions, Image, Pressable } from "react-native";
 import { Rating } from "react-native-ratings";
 import { Link } from "expo-router";
+import { Button } from "@/components/ui/button";
 
 import { buttonVariants } from "@/components/ui/button";
 
@@ -60,7 +61,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <View
       className="p-2 bg-white border border-gray-200 rounded-md"
-      style={[{ width: width / 1.5, height: 300 }]}
+      style={[{ width: width / 1.5, height: "auto" }]}
     >
       <View className="relative">
         <Link
@@ -126,17 +127,23 @@ export const ProductCard = ({ product }: ProductCardProps) => {
             ({discountPercentage}% off)
           </Text>
         </View>
-        <Link
-          href={{
-            pathname: "/product/[id]",
-            params: {
-              id: product.id,
-            },
-          }}
-          className={cn(buttonVariants(), "text-center mt-2")}
-        >
-          <Text className="text-white">Buy Now</Text>
-        </Link>
+
+        <View className="mt-2">
+          <Button variant="outline">
+            <Text>Add To Cart</Text>
+          </Button>
+          <Link
+            href={{
+              pathname: "/product/[id]",
+              params: {
+                id: product.id,
+              },
+            }}
+            className={cn(buttonVariants(), "text-center mt-2")}
+          >
+            <Text className="text-white">Buy Now</Text>
+          </Link>
+        </View>
       </View>
     </View>
   );

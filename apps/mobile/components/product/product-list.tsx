@@ -7,13 +7,15 @@ import {
 } from "@/services/product.service";
 
 import { ProductCard } from "./product-card";
+import { cn } from "@/lib/utils";
 
 interface ProductListProps {
   skip?: number;
   limit?: number;
+  className?: string;
 }
 
-export const ProductList = ({ skip, limit }: ProductListProps) => {
+export const ProductList = ({ skip, limit, className }: ProductListProps) => {
   const [products, setProducts] = useState<ProductResponse | null>(null);
   const [isLoading, setLoading] = useState(false);
 
@@ -36,7 +38,7 @@ export const ProductList = ({ skip, limit }: ProductListProps) => {
   }, [limit, skip]);
 
   return (
-    <View className="p-4">
+    <View className={cn("p-4", className)}>
       {!isLoading && products ? (
         <FlatList
           data={products.products}
