@@ -1,4 +1,6 @@
 import { View } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { Link } from "expo-router";
 
 import {
   DropdownMenu,
@@ -13,7 +15,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Text } from "@/components/ui/text";
 
 import LogoutButton from "@/components/auth/logout-button";
-import { Ionicons } from "@expo/vector-icons";
 
 const GITHUB_AVATAR_URI =
   "https://avatars.githubusercontent.com/u/83879699?v=4&size=64";
@@ -35,8 +36,10 @@ export const ProfileDropdown = () => {
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
 
-        <DropdownMenuItem>
-          <Text>Welcome Bikram</Text>
+        <DropdownMenuItem asChild>
+          <Link href={"/profile"}>
+            <Text>Profile</Text>
+          </Link>
         </DropdownMenuItem>
 
         <DropdownMenuSeparator />
