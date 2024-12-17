@@ -1,11 +1,10 @@
+import Header from "@/components/common/header";
 import { Text, View } from "react-native";
-
-import { Header } from "@/components/common/header";
 
 export default function Cart() {
   return (
     <View>
-      <Header />
+      <Header headerText="Cart" />
       <Text>Cart</Text>
     </View>
   );

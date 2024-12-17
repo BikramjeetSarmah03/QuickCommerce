@@ -1,32 +1,19 @@
-import { Ionicons } from "@expo/vector-icons";
-import { Link, router } from "expo-router";
-import { View, Text, Pressable, ScrollView } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { View, Text, ScrollView } from "react-native";
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import Header from "@/components/common/header";
 
 export default function Profile() {
-  const safeAreaInset = useSafeAreaInsets();
-
-  const goBack = () => {
-    router.back();
-  };
-
   return (
-    <View style={{ paddingTop: safeAreaInset.top + 10 }}>
-      <View className="flex-row justify-between px-4 pb-2 border-b border-gray-300">
-        <Pressable onPress={goBack}>
-          <Ionicons name="chevron-back" size={24} />
-        </Pressable>
-
-        <Text className="text-xl">Profile</Text>
-
-        <Link href={"/cart"}>
-          <Ionicons name="cart-outline" size={24} />
-        </Link>
-      </View>
+    <View>
+      <Header
+        leftHeader={{
+          icon: "cart-outline",
+          link: "/cart",
+        }}
+      />
 
       <ScrollView>
         <View className="items-center justify-center mt-4">

@@ -40,6 +40,7 @@ export default function TabLayout() {
           fontSize: 12,
         },
       }}
+      backBehavior="history"
     >
       <Tabs.Screen
         name="index"

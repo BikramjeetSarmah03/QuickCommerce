@@ -13,6 +13,7 @@ export default function DrawerLayout() {
           borderBottomRightRadius: 0,
         },
       }}
+      backBehavior="history"
     />
   );
 }

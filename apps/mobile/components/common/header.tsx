@@ -1,41 +1,55 @@
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useNavigation } from "expo-router";
-import { View, Text, Image, TouchableOpacity } from "react-native";
-import type { DrawerNavigationProp } from "@react-navigation/drawer";
-import { DrawerActions, type ParamListBase } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
-import { LinearGradient } from "expo-linear-gradient";
+import { type Href, Link, router } from "expo-router";
+import { Pressable, Text, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import { ProfileDropdown } from "@/components/user/profile-dropdown";
-import { SearchProduct } from "../product/search";
+interface HeaderProps {
+  backLink?: Href;
+  leftHeader?: {
+    link: Href;
+    icon: unknown;
+  };
+  headerText?: string;
+}
 
-export function Header() {
+export default function Header({
+  backLink,
+  leftHeader,
+  headerText,
+}: HeaderProps) {
   const safeAreaInset = useSafeAreaInsets();
 
-  const navigation = useNavigation<DrawerNavigationProp<ParamListBase>>();
+  function goBack() {
+    if (backLink) {
+      router.replace(backLink);
+    } else {
+      router.back();
+    }
+  }
 
   return (
-    <LinearGradient colors={["#ef4444", "#f3f4f6"]}>
-      <View
-        className="p-4 mb-2 native:pb-4"
-        style={[{ paddingTop: safeAreaInset.top + 2 }]}
-      >
-        <View className="flex-row items-center justify-between w-full pb-4">
-          <TouchableOpacity
-            onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
-          >
-            <Ionicons name="menu-outline" size={30} />
-          </TouchableOpacity>
+    <View
+      style={{ paddingTop: safeAreaInset.top + 10 }}
+      className="flex-row justify-between px-4 pb-2 border-b border-gray-300"
+    >
+      <Pressable onPress={goBack}>
+        <Ionicons name="chevron-back" size={24} />
+      </Pressable>
 
-          <View className="flex-row items-center gap-2">
-            <Image source={require("@/assets/images/logo.png")} />
-            <Text className="text-2xl font-semibold">QC</Text>
-          </View>
-
-          <ProfileDropdown />
+      {headerText && (
+        <View className="flex-1">
+          <Text className="text-xl font-semibold text-center -ml-7">
+            {headerText}
+          </Text>
         </View>
-        <SearchProduct />
-      </View>
-    </LinearGradient>
+      )}
+
+      {leftHeader && (
+        <Link href={leftHeader.link}>
+          {/* biome-ignore lint/suspicious/noExplicitAny: <explanation> */}
+          <Ionicons name={leftHeader.icon as any} size={24} />
+        </Link>
+      )}
+    </View>
   );
 }

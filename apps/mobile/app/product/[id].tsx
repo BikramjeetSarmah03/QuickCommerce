@@ -1,8 +1,6 @@
-import { Ionicons } from "@expo/vector-icons";
-import { Link, router, useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams } from "expo-router";
 import { useMemo, useState } from "react";
-import { View, Pressable, Text, Image, ScrollView } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { View, Text, Image, ScrollView } from "react-native";
 import { Rating } from "react-native-ratings";
 import moment from "moment";
 
@@ -11,10 +9,9 @@ import type { Product } from "@/components/product/product-card";
 import { productService } from "@/services/product.service";
 import { Button } from "@/components/ui/button";
 import { ProductList } from "@/components/product/product-list";
+import Header from "@/components/common/header";
 
 export default function SingleProduct() {
-  const safeAreaInset = useSafeAreaInsets();
-
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -32,10 +29,6 @@ export default function SingleProduct() {
     })();
   }, [id]);
 
-  const goBack = () => {
-    router.back();
-  };
-
   const { price, discountPercentage } = product || {};
 
   const discountedPrice =
@@ -43,19 +36,14 @@ export default function SingleProduct() {
     ((product?.price || 0) * (product?.discountPercentage || 0)) / 100;
 
   return (
-    <View
-      className="flex-1 pb-4"
-      style={{ paddingTop: safeAreaInset.top + 10 }}
-    >
-      <View className="flex-row justify-between px-4 pb-2 border-b border-gray-300">
-        <Pressable onPress={goBack}>
-          <Ionicons name="chevron-back" size={24} />
-        </Pressable>
+    <View className="flex-1 pb-4">
+      <Header
+        leftHeader={{
+          link: "/cart",
+          icon: "cart-outline",
+        }}
+      />
 
-        <Link href={"/cart"}>
-          <Ionicons name="cart-outline" size={24} />
-        </Link>
-      </View>
       <ScrollView>
         <View className="p-4">
           {loading ? (

@@ -2,7 +2,7 @@ import { ScrollView, Text, View } from "react-native";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 
 import { Button } from "@/components/ui/button";
-import { Header } from "@/components/common/header";
+import { GradientHeader } from "@/components/common/gradient-header";
 
 import { CategoriesList } from "@/components/product/categories-list";
 import { HomeBannerSlider } from "@/components/sliders/home-banner";
@@ -11,7 +11,7 @@ import { ProductList } from "@/components/product/product-list";
 export default function HomeScreen() {
   return (
     <>
-      <Header />
+      <GradientHeader />
 
       <ScrollView>
         <View className="flex-row items-center justify-between p-4">

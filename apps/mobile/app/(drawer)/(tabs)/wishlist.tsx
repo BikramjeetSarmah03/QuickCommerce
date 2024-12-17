@@ -1,11 +1,11 @@
 import { Text, View } from "react-native";
 
-import { Header } from "@/components/common/header";
+import { GradientHeader } from "@/components/common/gradient-header";
 
 export default function Wishlist() {
   return (
     <View>
-      <Header />
+      <GradientHeader />
       <Text>Wishlist</Text>
     </View>
   );
